@@ -1,0 +1,5 @@
+esercizio7.0 : esercizio_7.0.cpp FunzioneBase.h Seno.h Integral.h
+	g++ esercizio_7.0.cpp -o esercizio7.0
+
+clean: 
+	rm esercizio7.0
