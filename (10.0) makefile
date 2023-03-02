@@ -1,0 +1,8 @@
+LIBS:=`root-config --libs`
+INCS:=`root-config --cflags`
+
+esercizio10.0 : Esercizio_10.0.cpp RandomGen.h 
+	g++ Esercizio_10.0.cpp -o esercizio10.0 ${INCS} ${LIBS}
+
+remove : 
+	rm esercizio10.0
