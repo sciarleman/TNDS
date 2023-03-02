@@ -1,0 +1,15 @@
+INCS:=`root-config --cflags`
+LIBS:=`root-config --libs`
+
+esercizio_11.0 : esercizio_11.0.cpp esperimentoPrisma.o 
+	g++ esercizio_11.0.cpp esperimentoPrisma.o -o esercizio_11.0 ${INCS} ${LIBS}
+
+esperimentoPrisma.o : EsperimentoPrisma.cpp EsperimentoPrisma.h RandomGen.h
+	g++ -c EsperimentoPrisma.cpp -o esperimentoPrisma.o 
+
+clean :
+	-rm esercizio_11.0
+
+remove :
+	-rm EsperimentoPrisma.o
+	-rm *.png
