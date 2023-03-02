@@ -1,0 +1,26 @@
+In questa seconda lezione affronteremo gli stessi problemi della prima lezione (lettura di dati da un file, calcolo di media, varianza e mediana) utilizzando un contenitore di dati più evoluto del semplice array del C. A questo proposito nella prima parte della lezione costruiremo la nostra prima classe, la classe Vettore. Nella seconda parte adatteremo le funzioni già scritte nella lezione scorsa in modo che possano funzionare con oggetti di tipo Vettore. Quindi in sintesi :
+Tipo di dato da leggere è constituito da numeri double.
+Tipo di contenitore di dati è la classe Vettore che scriveremo noi.
+Operazioni sui dati vengono svolte mediante funzioni che lavorano su oggetti di tipo Vettore.
+
+
+ESERCIZIO 2.0 - Creazione della classe Vettore :
+Implementare una classe che abbia come data membri (privati) un intero (dimensione del vettore) ed un puntatore a double (puntatore alla zona di memoria dove sono immagazzinati i dati).
+Implementare:
+Un costruttore di default, che assegni valori nulli alla lunghezza del vettore ed al puntatore.
+Un costruttore che abbia come argomento un intero: questo deve creare un vettore di lunghezza uguale all'intero e tutte le componenti nulle (usando un new per allocare la memoria necessaria).
+Un distruttore: deve chiaramente deallocare con delete[] la zona di memoria allocata con new.
+Dei metodi per inserire e leggere i valori della componenti: questi metodi devono controllare che l'indice delle componenti richieste sia compatibile con la lunghezza del vettore.
+Header file della classe:
+
+Si verifichi che una classe realizzata in questo modo si comporta in modo strano se usiamo l'operatore di assegnazione. Questo è un problema generico quando abbiamo classi con puntatori come data membri: bisogna assicurarsi che ciascuna istanza della classe abbia la propria zona di memoria.
+Affinché la classe si comporti in maniera consistente, è necessario implementare anche:
+un costruttore che abbia come argomento un altro vettore (copy constructor): deve creare una copia del vettore argomento.
+l'overloading dell'operatore di assegnazione, assicurandosi che i dati vengano copiati dal vettore di partenza a quello di arrivo.
+
+ESERCIZIO 2.1 - Codice di analisi dati utilizzando la classe Vettore (da consegnare) :
+Proviamo ora a riscrivere il codice della prima lezione utilizzando un contenitore di dati più raffinato: la classe Vettore ci permetterà di riempire il contenitore dati controllando per esempio che non stiamo sforando la dimensione allocata. Il Vettore inoltre si porta dietro anche la sua dimensione: se dobbiamo calcolare la media degli elementi di un Vettore non dobbiamo più passare la dimensione come argomento esterno.
+Per svolgere questo esercizio dobbiamo :
+modificare tutte le funzioni in funzioni.h e funzioni.cpp in modo che lavorino con oggetti di tipo Vettore invece che con semplici array del C.
+modificare il main in modo che utilizzi la nuova classe Vettore e le nuove funzioni.
+modificare il Makefile
