@@ -43,3 +43,9 @@ differenza tra i valori misurati e quelli attesi di δm(λ1) e δm(λ2), quello 
 differenza tra i valori misurati e quelli attesi di n(λ1) e n(λ2), quello bidimensionale delle differenze per le due lunghezze d'onda, e calcolare il coefficiente di correlazione.
 differenza tra i valori misurati e quelli attesi di A e B, quello bidimensionale delle differenze, e calcolare il coefficiente di correlazione.
 In tutti i casi, se possibile, confrontate il risultato della simulazione con quello ottenuto dalla propagazione degli errori.
+
+
+
+ESERCIZIO 11.1 - Attrito viscoso (facoltativo) :
+
+Svolgere il tema d'esame sulla simulazione di un esperimento per la misura della viscosità di un materiale:
