@@ -1,0 +1,14 @@
+esercizio6.3: esercizio_6.3.o Tangente.o Solutore.h Bisezione.h
+	g++ esercizio_6.3.cpp -o esercizio6.3
+
+esercizio_6.3.o : esercizio_6.3.cpp
+	g++ -c esercizio_6.3.cpp -o esercizio_6.3.o
+
+Tangente.o : Tangente.h 
+	g++ -c Tangente.h -o Tangente.o
+
+clean : 
+	rm *.o
+
+cleanall: clean
+	rm esercizio6.2
