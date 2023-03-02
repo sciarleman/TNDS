@@ -1,0 +1,6 @@
+esercizio3.1 : esercizio_3.1.cpp funzioni.h
+	g++ -o esercizio3.1 esercizio_3.1.cpp
+
+clean :
+	rm esercizio3.1
+	
