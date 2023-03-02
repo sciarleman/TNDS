@@ -1,0 +1,45 @@
+In questa lezione vedremo una applicazione delle tecniche Monte Carlo per la simulazione di una delle esperienze dei laboratori di fisica.
+
+ESERCIZIO 11.0 - Simulazione dell'esperienza dello spettrometro a prisma (da consegnare) (da consegnare):
+
+La dipendenza dell'indice di rifrazione dalla lunghezza d'onda della luce incidente viene descritta dalla legge di Cauchy: 
+L'esperienza dello spettrometro a prisma si propone di misurare l'indice di rifrazione del materiale di un prisma per le diverse lunghezze d'onda di una lampada al mercurio onde determinare i parametri A e B che caratterizzano tale materiale.
+L'apparato sperimentale consiste in un goniometro sul quale viene posizionato il prisma. Una lampada a vapori di mercurio viene posizioneta da un lato del canocchiale con due collimatori per produrre un fascio luminoso che incide sul prisma. Il fascio di luce riflesso o rifratto viene osservato tramite un altro canocchiale. Gli angoli corrispondeni all'orientamento del supporto sul goniometro ed alla posizione dei canocchiali sono leggibili su di un nonio.
+
+
+La nostra simulazione consiste nell'assumere dei valori verosimili dei parametri della legge di Cauchy, vedere come questi si traducono in quantità osservabili e stimare se la nostra procedura di misura e di analisi dei dati ci permette di derivare correttamente i valori utilizzati come ingresso nella simulazione e con quale incertezza.
+
+Nell'esperimento l'unico tipo di grandezze misurate sono gli angoli, per cui possiamo assumere un'incertezza uguale per tutte le misure angolari e pari a σθ=0.3 mrad.
+Nell'esperienza di laboratorio, l'angolo di apertura del prisma α=60o ed il materiale del prisma ha valori dei parametri di Cauchy A=2.7, B=60000 nm2.
+Consideriamo le due lunghezze d'onda estreme della lampada al mercurio, il giallo, λ1=579.1 nm, ed il viola, λ2=404.7 nm.
+
+La misura sperimentale consiste nella determinazione:
+
+dell'angolo corrispondente al fascio non deflesso in assenza del prisma: θ0.
+dell'angolo corrispondente alla deviazione minima della riga del giallo: θm(λ1).
+dell'angolo corrispondente alla deviazione minima della riga del viola: θm(λ2).
+L'analisi dati consiste nella seguente procedura:
+determinazione degli angoli di deviazione minima:
+δm(λ1)=θm(λ1)-θ0.
+δm(λ2)=θm(λ2)-θ0.
+calcolo degli indici di rifrazione n(λ) dalla relazione: .
+calcolo dei parametri A e B dalle formule:
+
+
+Parte I
+Costruire una classe EsperimentoPrisma con le seguenti caratteristiche:
+come data membri deve avere sia i valori veri che i valori misurati di tutte le quantità ed in più un generatore di numeri casuali RandomGen (vedi lezione 10);
+nel costruttore deve definire tutti i valori di ingresso delle quantità misurabili a partire dai parametri A, B ed α e dalle lunghezze d'onda;
+N.B.: il valore di θ0 è arbitrario, ma, una volta definito, i θm sono fissati.
+un metodo Esegui() che effettua la misura sperimentale e determina dei valori misurati di θ0, θm(λ1), θm(λ2);
+N.B.: il valore misurato di un angolo si ottiene estraendo un numero distribuito in maniera gaussiana intorno al suo valore di ingresso nella simulazione e deviazione standard σθ.
+i metodi necessari per accedere ai valori dei data membri, sia quelli di ingresso che quelli misurati..
+Scrivere un programma che esegua 10000 volte l'esperimento, faccia un istogramma dei valori misurati, e calcoli media e deviazione standard di tali valori.
+N.B.: Per il calcolo di medie e varianze potete decidere di immagazzinare i dati in un contenitore (std::vector o Vettore e utilizzare le funzioni sviluppate nelle prime lezioni oppure accedervi direttamente dagli istogrammi di ROOT come mostrato qui (ricordandosi di aggiungere histo.StatOverflows( kTRUE ); in modo da forzare l'utilizzo di eventuali underflow e overflow per calcoli statistici).
+
+Parte II
+Aggiungere alla classe un metodo Analizza() che faccia i calcoli relativi all'analisi dati ed estendere il programma in modo da eseguire l'analisi dati dei 10000 esperimenti e fare istogrammi di:
+differenza tra i valori misurati e quelli attesi di δm(λ1) e δm(λ2), quello bidimensionale delle differenze per le due lunghezze d'onda, e calcolare il coefficiente di correlazione.
+differenza tra i valori misurati e quelli attesi di n(λ1) e n(λ2), quello bidimensionale delle differenze per le due lunghezze d'onda, e calcolare il coefficiente di correlazione.
+differenza tra i valori misurati e quelli attesi di A e B, quello bidimensionale delle differenze, e calcolare il coefficiente di correlazione.
+In tutti i casi, se possibile, confrontate il risultato della simulazione con quello ottenuto dalla propagazione degli errori.
