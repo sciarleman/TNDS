@@ -1,0 +1,10 @@
+In questa lezione implementeremo alcuni algoritmi per la quadratura numerica, cioè per il calcolo di integrali definiti di funzioni in un intervallo chiuso e limitato insieme alla valutazione dell'errore commesso nel calcolo dell'integrale stesso. Questo si rende necessario quando non sappiamo valutare analiticamente l'integrale in esame, quando non si riesce ad esprimere la primitiva in funzioni elementari, quando la soluzione analitica è molto complicata ed il calcolo numerico è molto più semplice, oppure quando la funzione è conosciuta in un numeri finito di punti.
+
+ESERCIZIO 7.0 - Integrazione con la formula del midpoint:
+Implementare un codice per il calcolo della funzione sin(x) tra [0,π] con il metodo del midpoint, con un numero di passi fissato passato da riga di comando. Per controllare la precisione ottenuta con un numero di passi fissato si richiede di stampare una tabella con la differenza tra il risultato numerico ed il valore esatto analitico in funzione del numero di passi (o della lunghezza del passo h). In aggiunta alla tabella si può rappresentare l'andamento dell'errore in funzione della lunghezza del passo h con un TGraph di ROOT (una traccia su come visualizzare i dati usando un TGraph di ROOT si può trovare qui).
+
+ESERCIZIO 7.1 - Integrazione alla Simpson (da consegnare):
+Implementare l'integrazione con il metodo di Simpson con un numero di passi definito. Si ò utilizzare lo stesso schema dell'esercizio precedente costruendo una classe derivata Simpson . Come nell'esercizio 7.0 stampare una tabella ( o costruire un TGraph di ROOT) con la precisione raggiunta in funzione del numero di passi.
+
+ESERCIZIO 7.2 - Integrazione con la formula dei trapezi con precisione fissata (da consegnare):
+Implementare l'integrazione della funzione sin(x) tra [0,π] con il metodo dei trapezi e con precisione fissata. L'algoritmo dovrà accettare in input la precisione desiderata e raddoppiare il numero di passi finchè l'errore (stimato runtime) non diventa inferiore alla precisione impostata.
