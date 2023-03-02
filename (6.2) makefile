@@ -1,0 +1,14 @@
+esercizio6.2 : esercizio_6.2.o Parabola.o Solutore.h Bisezione.h
+	g++ esercizio_6.2.cpp -o esercizio6.2
+
+esercizio_6.2.o : esercizio_6.2.cpp
+	g++ -c esercizio_6.2.cpp -o esercizio_6.2.o
+
+Parabola.o : Parabola.h 
+	g++ -c Parabola.h -o Parabola.o
+
+clean : 
+	rm *.o
+
+cleanall: clean
+	rm esercizio6.1
