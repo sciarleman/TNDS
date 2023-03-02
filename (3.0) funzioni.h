@@ -1,96 +1,78 @@
 #include <iostream>
 #include <fstream> 
 #include <cmath>
-#include <assert.h>
-
-#include <vector>
-#include <algorithm>
+#include "Vettore.h"
 
 using namespace std;
 
-template <typename T> vector<T> read ( int numerodati, const char* nomefile) {
+template <typename T> Vettore<T> read (unsigned int numerodati, char * nomefile) {
 
-	vector<T> vettore;
+  Vettore <T> vettore(numerodati);
 
-	//cout << nomefile << endl;
-	
-	ifstream fileinput(nomefile);
-
-	// se file non si apre
-	if (!fileinput) {
-    cout << "errore apertura file " << nomefile << endl;
-    exit(11);
-  	}
-	else {
-    for ( int i=0 ; i < numerodati ; i++) {
-			T val = 0;
-			fileinput >> val;
-			vettore.push_back( val );
-// se richiesta file troppo grande
-			if (fileinput.eof()) {
-				cout << "Fine file raggiunto" << endl;
-				exit(12);
-			}
-		}
-	}
-	return vettore;
-}
-
-template <typename T> vector<T> ReadAll (const char * nomefile) {
-
-	vector<T> vettore;
-	
-	ifstream fileinput(nomefile);
+//	cout << nomefile << endl;
+  ifstream fileinput(nomefile);
 
 // se file non si apre
   if (!fileinput) {
     cout << "errore apertura file " << nomefile << endl;
-    exit(32);
+    exit(1);
   }
+
+// se richiesta file troppo grande
   else {
-    while (!fileinput.eof()) {
+    for (unsigned int k = 0; k < numerodati; k++) {
       T valore = 0;
       fileinput >> valore;
-      vettore.push_back( valore );
+      vettore.SetComponent(k, valore);
+   
+      if (fileinput.eof()) {
+        cout << "Limite massimo dati nel file raggiunto" << endl;
+        exit(0);
+      }
     }
   }
-	return vettore;
+
+ /* for (int k = 0; k < numerodati; k++)  controllo per vedere a schermo dati letti
+    cout << data[k] << endl;*/
+
+  return vettore;
 }
 
 // funzione calcolo media
-template <typename T> double calcmedia( const vector<T> &vet) {
+template <typename T> double calcmedia( const Vettore<T> &vet) {
 
   double sum = 0;
-  for (int i = 0; i < vet.size(); i++) {
-		sum += vet[i];
+  for (int i = 0; i < vet.GetNum(); i++) {
+		sum += vet[i];		
   }
-  return ( sum / vet.size());
+  return (sum / vet.GetNum());
 }
 
 //funzione calcolo varianza
-template <typename T> double calcvarianza( const vector<T> &vet) {
+template <typename T> double calcvarianza( const Vettore<T> &vet) {
 	
   double sum = 0;
-  for (int i = 0; i < vet.size(); i++) {
+  for (int i = 0; i < vet.GetNum(); i++) {
     sum += vet[i];
   }
-  T media = (sum / vet.size());
-
+  T media = (sum / vet.GetNum());
+	
   double scarti = 0;
-  for (int i = 0; i < vet.size(); i++) {
+  for (int i = 0; i < vet.GetNum(); i++) {
 		double radscarti = (vet[i] - media);
     scarti += pow((radscarti), 2);
-	
+
+		
   }
-  return ( scarti / (vet.size() ) );
+  return ( scarti / (vet.GetNum() ) );
 }
 
 
-// funzione riordino vettore. è implementata anche la funzione sort specifica di vector
-/*template <typename T> void sort_by_value(vector<T> &vet) {
+// funzione riordino vettore
+template <typename T> void sort_by_value(Vettore<T> &vet) {
 	
-  for (int i = 0; i < vet.size() - 1; i++) {
-    for (int j = i + 1; j < vet.size(); j++) {
+  for (int i = 0; i < vet.GetNum() - 1; i++) {
+    for (int j = i + 1; j < vet.GetNum(); j++) {
       if (vet[i] > vet[j]) {
         T dep = vet[i];
         vet[i] = vet[j];
@@ -98,23 +80,22 @@ template <typename T> double calcvarianza( const vector<T> &vet) {
       }
     }
   }
-}*/
+}
 
 // funzione calcolo mediana (due casi se numero dati letti pari o dispari)
-template <typename T> double calcmediana(vector<T> &vet) {
+template <typename T> double calcmediana(Vettore<T> &vet) {
 
-	//funzione sort_by_value(vet);
-	sort ( vet.begin(), vet.end());
-	
+	sort_by_value(vet);
+
   double mediana;
-  if (vet.size() % 2 == 0) {
-    T pre = vet[(vet.size() / 2) - 1];
-    T post = vet[(vet.size() / 2)];
+  if (vet.GetNum() % 2 == 0) {
+    T pre = vet[(vet.GetNum() / 2) - 1];
+    T post = vet[(vet.GetNum() / 2)];
     mediana = (pre + post) / 2;
   } else {
 
-		T valormedio = vet.size()/2;
-    mediana = vet[valormedio];
+		T valormedio = vet.GetNum()/2;
+    mediana = vet.GetComponent(valormedio);
 
   }
 
@@ -122,15 +103,13 @@ template <typename T> double calcmediana(vector<T> &vet) {
 }
 
 // stampa dati riordinati su file txt esterno
-template <typename T> void Print( vector<T> &vet, const char *filename) { // overloading di funzioni
+template <typename T> void Print( Vettore<T> &vet, const char *filename) { // overloading di funzioni
 
   ofstream fout("output_dati_riordinati.txt");
-
-  for (int i = 0; i < vet.size(); i++) {
-
-		if (i<vet.size()-1) {
+  for (int i = 0; i < vet.GetNum(); i++) {
+		if (i<vet.GetNum()-1) {
     fout << vet[i] << endl;
-		}
+			}
 		else {
 			fout << vet[i];
 		}
@@ -139,11 +118,12 @@ template <typename T> void Print( vector<T> &vet, const char *filename) { // ove
 
 }
 
-//stampa a schermo vettore riordinato
-template <typename T> void Print( vector<T> &vet) {
-  for (int i = 0; i < vet.size(); i++) {
+//stampa vettore riordinato
+template <typename T> void Print( Vettore<T> &vet) {
+  for (int i = 0; i < vet.GetNum(); i++) {
     cout << vet[i] << endl;
   }
 }
+
 
 
