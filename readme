@@ -1,0 +1,22 @@
+In questa lezione introdurremo alcuni metodi per la risoluzione di equazioni differenziali ordinarie. Implementeremo la risoluzione numerica di queste equazioni con i metodi di Eulero e di Runge-Kutta.
+Per risolvere l'esercizio vedremo come è possibile definire le principali operazioni algebriche per i vector della STL. Questo ci permetterà di realizzare i metodi di integrazione di equazioni differenziali usando una notazione vettoriale, molto simile al formalismo matematico.
+
+
+ESERCIZIO 9.2 - Risoluzione tramite Runge-Kutta (da consegnare):
+Ripetere l'esercizio 9.1 con il metodo di risoluzione di equazioni differenziali di Runge-Kutta (del quarto ordine) e confrontare quindi in condizioni analoghe (t massimo e h) la stabilità dei due metodi.
+Per svolgere l'esercizio, basterà realizzare una nuova classe concreta a partire da EquazioneDifferenzialeBase.
+
+Brevi richiami
+Il metodo di Runge-Kutta
+
+Cosa ci aspettiamo?
+
+-----------------------------------------------------------------------------------
+
+ESERCIZIO 9.3 - Moto del pendolo (da consegnare):
+Implementare la risoluzione dell'equazione del pendolo usando i metodi precedentemente implementati. Fare quindi un grafico del periodo di oscillazione e verificare che per angoli grandi le oscillazioni non sono più isocrone.
+
+-----------------------------------------------------------------------------------
+
+ESERCIZIO 9.4 - Oscillazione forzate e risonanza (da consegnare):
+Implementare la risoluzione dell'equazione di un oscillatore armonico smorzato con forzante. Fare quindi un grafico della soluzione stazionaria in funzione della frequenza dell'oscillatore, ricostruendo la curva di risonanza.
