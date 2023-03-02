@@ -1,8 +1,19 @@
-LIBS:=`root-config --libs`
-INCS:=`root-config --cflags`
+esercizio2.1 : esercizio_2.1.o Vettore.o funzioni.o
+	g++ esercizio_2.1.o Vettore.o funzioni.o -o esercizio2.1
 
-esercizio7.1 : esercizio_7.1.cpp FunzioneBase.h Seno.h Integral.h
-	g++ esercizio_7.1.cpp -o esercizio7.1 ${INCS} ${LIBS}
+esercizio_2.1.o : esercizio_2.1.cpp funzioni.h
+	g++ -c esercizio_2.1.cpp -o esercizio_2.1.o
 
-clean: 
-	rm esercizio7.1
+funzioni.o : funzioni.cpp funzioni.h
+	g++ -c funzioni.cpp -o funzioni.o
+
+Vettore.o : Vettore.cpp Vettore.h
+	g++ -c Vettore.cpp -o Vettore.o
+
+clean : 
+
+	rm -f *.o esercizio2.1
+
+cleanall : clean
+
+	rm esercizio2.1
