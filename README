@@ -1,3 +1,4 @@
+
 In questa lezione implementeremo alcuni algoritmi per la quadratura numerica, cioè per il calcolo di integrali definiti di funzioni in un intervallo chiuso e limitato insieme alla valutazione dell'errore commesso nel calcolo dell'integrale stesso. Questo si rende necessario quando non sappiamo valutare analiticamente l'integrale in esame, quando non si riesce ad esprimere la primitiva in funzioni elementari, quando la soluzione analitica è molto complicata ed il calcolo numerico è molto più semplice, oppure quando la funzione è conosciuta in un numeri finito di punti.
 
 ESERCIZIO 7.0 - Integrazione con la formula del midpoint:
