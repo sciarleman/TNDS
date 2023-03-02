@@ -1,0 +1,6 @@
+esercizio3.0 : esercizio_3.0.cpp funzioni_3.0.h Vettore_3.0.h
+	g++ -o esercizio3.0 esercizio_3.0.cpp
+
+clean :
+	rm esercizio3.0
+	
