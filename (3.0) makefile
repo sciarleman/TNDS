@@ -1,4 +1,4 @@
-esercizio3.0 : esercizio_3.0.cpp funzioni_3.0.h Vettore_3.0.h
+esercizio3.0 : esercizio_3.0.cpp funzioni.h Vettore.h
 	g++ -o esercizio3.0 esercizio_3.0.cpp
 
 clean :
