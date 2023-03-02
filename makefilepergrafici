@@ -1,0 +1,36 @@
+INCS:=`root-config --cflags`
+LIBS:=`root-config --libs`
+
+all : prog5.3 tgraph graff
+
+prog5.3 : esercizio5.3.o Posizione.o Particella.o CampoVettoriale.o PuntoMateriale.o
+	g++ esercizio5.3.o Posizione.o Particella.o CampoVettoriale.o PuntoMateriale.o -o prog5.3 ${INCS} ${LIBS}
+
+graff : main_cf.cpp Posizione.o Particella.o CampoVettoriale.o PuntoMateriale.o
+	g++ main_cf.cpp Posizione.o Particella.o CampoVettoriale.o PuntoMateriale.o -o graff ${INCS} ${LIBS} 
+
+
+esercizio5.3.o : esercizio_5.3.cpp Posizione.h Particella.h CampoVettoriale.h PuntoMateriale.h
+	g++ -c esercizio_5.3.cpp -o esercizio5.3.o ${INCS} ${LIBS}
+
+Posizione.o : Posizione.cpp Posizione.h
+	g++ -c Posizione.cpp -o Posizione.o
+
+Particella.o : Particella.cpp Particella.h
+	g++ -c Particella.cpp -o Particella.o
+
+CampoVettoriale.o : CampoVettoriale.cpp CampoVettoriale.h
+	g++ -c CampoVettoriale.cpp -o CampoVettoriale.o
+
+PuntoMateriale.o : PuntoMateriale.cpp PuntoMateriale.h
+	g++ -c  PuntoMateriale.cpp	-o PuntoMateriale.o
+
+tgraph : grafici.cpp
+	g++ -o tgraph grafici.cpp ${INCS} ${LIBS} 
+
+clean : 
+	rm *.o
+
+cleanall : clean
+	rm prog5.3
+	rm tgraph
