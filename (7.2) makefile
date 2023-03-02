@@ -1,0 +1,8 @@
+LIBS:=`root-config --libs`
+INCS:=`root-config --cflags`
+
+esercizio7.2 : esercizio_7.2.cpp FunzioneBase.h Integral.h
+	g++ esercizio_7.2.cpp -o esercizio7.2 ${INCS} ${LIBS}
+
+clean: 
+	rm esercizio7.2
