@@ -1,22 +1,37 @@
+
 In questa lezione introdurremo alcuni metodi per la risoluzione di equazioni differenziali ordinarie. Implementeremo la risoluzione numerica di queste equazioni con i metodi di Eulero e di Runge-Kutta.
 Per risolvere l'esercizio vedremo come è possibile definire le principali operazioni algebriche per i vector della STL. Questo ci permetterà di realizzare i metodi di integrazione di equazioni differenziali usando una notazione vettoriale, molto simile al formalismo matematico.
+
+ESERCIZIO 9.0 - Algebra vettoriale:
+Come prima cosa proviamo a dotare i vector della STL di tutte le funzionalità algebriche che ci possono essere utile definendo opportunamente gli operatori +,*,/,+= . Dal momento che non possiamo modificare gli header files e i files di implementazione della classe vector implementiamo questi operatori come funzioni libere in un header file apposito da includere quando necessario. Potete trovarne un esempio qui.
+Provate a scrivere un piccolo codice di test per verificare il corretto funzionamento delle operazioni tra vettori : potreste provate a realizzare un semplice programma che scriva a video le componenti della risultate di due forze (vettori tridimensionali) e le componenti del versore della risultante.
+
+ESERCIZIO 9.1 - Risoluzione tramite metodo di Eulero:
+Implementare un codice per la risoluzione numerica di un'equazione differenziale descrivente il moto di un oscillatore armonico tramite il metodo di Eulero. Graficare l'andamento della posizione in funzione del tempo al variare del passo di integrazione e confrontare l'errore commesso con la soluzione esatta.
+Struttureremo la soluzione del problema in modo simile a quanto fatto nelle precedenti lezioni su ricerca degli zeri e integrazione numerica:
+
+Definiamo una classe astratta FunzioneVettorialeBase con un unico metodo Eval, puramente virtuale, che dato un vector ed un double, rappresentante il tempo, restituisce il valore della derivata prima nel punto e nell'istante considerati.
+Da questa classe astratta, deriviamo una classe concreta che descriva le leggi del modo di un oscillatore armonico, permettendo di definirne la frequenza, o nel construttore o con degli opportuni metodi per leggere/definire dei parametri.
+Definiamo una classe astratta EquazioneDifferenzialeBase che ha un unico metodo Passo, puramente virtuale, che dati il tempo t, un vettore x, il passo di integrazione h e un puntatore ad una FunzioneVettorialeBase, restituisce la una stima di del valore della posizione x al tempo t+h. Avere il tempo t come argomento permetterà in esercizi futuri (come ad esempio il 9.4) di avere forzanti esterne o parametri dipendenti dal tempo.
+Da questa classe astratta, deriviamo una classe concreta che implementi il metodo di Eulero.
+Per testare il metodo, risolviamo l'equazione differenziale:
+Equazione differenziale
+con passi di integrazione da 0.1 a 0.001, mettendo in grafico il valore della x in funzione del tempo ed anche il suo errore rispetto alla soluzione esatta del problema: x=sint. Si consiglia di svolgere l'integrazione per un certo numero di periodi, in modo da vedere se l'ampiezza di oscillazione rimane costante. Integrare fino a t=70 s permette di vedere circa 10 periodi.
 
 
 ESERCIZIO 9.2 - Risoluzione tramite Runge-Kutta (da consegnare):
 Ripetere l'esercizio 9.1 con il metodo di risoluzione di equazioni differenziali di Runge-Kutta (del quarto ordine) e confrontare quindi in condizioni analoghe (t massimo e h) la stabilità dei due metodi.
 Per svolgere l'esercizio, basterà realizzare una nuova classe concreta a partire da EquazioneDifferenzialeBase.
 
-Brevi richiami
-Il metodo di Runge-Kutta
-
-Cosa ci aspettiamo?
-
------------------------------------------------------------------------------------
-
 ESERCIZIO 9.3 - Moto del pendolo (da consegnare):
 Implementare la risoluzione dell'equazione del pendolo usando i metodi precedentemente implementati. Fare quindi un grafico del periodo di oscillazione e verificare che per angoli grandi le oscillazioni non sono più isocrone.
 
------------------------------------------------------------------------------------
-
 ESERCIZIO 9.4 - Oscillazione forzate e risonanza (da consegnare):
 Implementare la risoluzione dell'equazione di un oscillatore armonico smorzato con forzante. Fare quindi un grafico della soluzione stazionaria in funzione della frequenza dell'oscillatore, ricostruendo la curva di risonanza.
+
+ESERCIZIO 9.5 - Moto in campo gravitazionale:
+Implementare la risoluzione dell'equazione del moto di un corpo in un campo gravitazionale. Verificare, nel caso del sistema Terra-Sole, che il periodo di rivoluzione della Terra intorno al Sole sia effettivamente di un anno e che l'orbita sia periodica. Calcolare quindi il rapporto tra perielio ed afelio.
+Provare ad aggiungere una piccola perturbazione al potenziale gravitazionale (ad esempio un termine proporzionale ad 1/r3 nella forza) e verificare che le orbite non sono più chiuse ma formano una rosetta.
+
+ESERCIZIO 9.6 - Moto di una particella carica in un campo elettrico e magnetico uniforme :
+Implementare la risoluzione dell'equazione del moto di una particella carica in un campo elettrico e magnetico uniforme. Disegnare la traiettoria della particella e determinarne il diametro. Se si aggiunge un campo elettrico con componente lungo l'asse x pari a Ex = 10000 V/m, in che direzione si muove ora la particella?
