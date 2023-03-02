@@ -1,0 +1,18 @@
+LIBS:=`root-config --libs`
+INCS:=`root-config --cflags`
+
+all : esercizio10.2 graph
+
+esercizio10.2 : esercizio_10.2.cpp RandomGen.h IntegralMC.h FunzioneBase.h
+	g++ esercizio_10.2.cpp  -o esercizio10.2 ${INCS} ${LIBS}
+
+graph : main2.cpp esercizio_10.2.cpp
+	g++ main2.cpp  -o main2 ${INCS} ${LIBS}
+
+remove : 
+	rm esercizio10.2
+	rm main2
+
+clean :
+	rm *.png
+	rm *.dat
