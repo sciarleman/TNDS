@@ -1,0 +1,17 @@
+esercizio6.1 : esercizio_6.1.o FunzioneBase.o Parabola.o
+	g++ esercizio_6.1.cpp -o esercizio6.1
+
+esercizio_6.1.o : esercizio_6.1.cpp
+	g++ -c esercizio_6.1.cpp -o esercizio_6.1.o
+
+Parabola.o : Parabola.h 
+	g++ -c Parabola.h -o Parabola.o
+
+FunzioneBase.o : FunzioneBase.h
+	g++ -c FunzioneBase.h -o FunzioneBase.o
+
+clean : 
+	rm *.o
+
+cleanall: clean
+	rm esercizio6.1
